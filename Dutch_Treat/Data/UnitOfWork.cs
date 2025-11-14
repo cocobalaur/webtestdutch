@@ -2,6 +2,8 @@
 using Dutch_Treat.Data.Repositories;
 using Dutch_Treat.Data.Repositories.Helpers;
 using DutchTreat.Data.Entities;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
 
 namespace Dutch_Treat.Data
 {
@@ -12,6 +14,9 @@ namespace Dutch_Treat.Data
         //private ILogger<DutchProductRepository> _loggerProduct;
         //private DutchProductRepository _productRepository;
 
+        //UnitOfWork depends on ApplicationDbContext and IRepositoryProvider.
+        // When a service or controller asks for IUnitOfWork, DI creates an instance of UnitOfWork and injects:
+        //The current ApplicationDbContext(scoped per request), The RepositoryProvider
         public UnitOfWork(ApplicationDbContext context, IRepositoryProvider provider, ILoggerFactory loggerFactory) 
         {
             //_loggerOrder = new Logger<DutchOrderRepository>(loggerFactory);

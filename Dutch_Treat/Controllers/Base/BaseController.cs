@@ -14,8 +14,9 @@ namespace Dutch_Treat.Controllers.Base
     public class BaseController<T> : Controller
     {
         private readonly ILogger<BaseController<T>> _logger;
-        private readonly IDutchRepository<T> _repository;          
+        private readonly IDutchRepository<T> _repository;
 
+        //The controller does not create the repository; it just asks for it.
         public BaseController(ILogger<BaseController<T>> logger, 
             IDutchRepository<T> repository)
         {

@@ -11,11 +11,18 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
+// dependency injection (software design pattern where an object or function receives its dependencies from an external source rather than creating them itself.)
+//ApplicationDbContext is your EF Core database context.
+//DI injects ApplicationDbContext whenever a class needs it.
+//so when i create a controller/ any other file i dont need to specify the database cause its already creating it for you through ASP.net 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString)
-            .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+            .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)); //Improves performance by not tracking entities unless explicitly needed
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+//Registers Identity services, which depend on the ApplicationDbContext.
+//DI ensures that Identity can get the DB context automatically.
 builder.Services.AddIdentity<ApplicationUser, IdentityRole<int>>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultUI()
@@ -23,7 +30,8 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole<int>>(options => opti
 
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddTransient<DutchSeeder>();
+builder.Services.AddTransient<DutchSeeder>(); //Registers DutchSeeder with a Transient lifetime, meaning a new instance is created every time it is requested.
+                                              //The seeder can then have dependencies injected in its constructor (like ApplicationDbContext or repositories).
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IRepositoryProvider, RepositoryProvider>();
