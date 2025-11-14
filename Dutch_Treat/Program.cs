@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
-// dependency injection (software design pattern where an object or function receives its dependencies from an external source rather than creating them itself.)
+//dependency injection (software design pattern where an object or function receives its dependencies from an external source rather than creating them itself.)
 //ApplicationDbContext is your EF Core database context.
 //DI injects ApplicationDbContext whenever a class needs it.
 //so when i create a controller/ any other file i dont need to specify the database cause its already creating it for you through ASP.net 
