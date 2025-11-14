@@ -26,6 +26,12 @@ namespace Dutch_Treat.Data
             modelBuilder.Entity<OrderItem>()
                 .Property(o => o.UnitPrice)
                 .HasColumnType("money");
+
+            // Each User can have many entries in the UserRole join table
+            //b.HasMany(e => e.UserRoles)
+            //    .WithOne()
+            //    .HasForeignKey(ur => ur.UserId)
+            //    .IsRequired();
         }
     }
 }
