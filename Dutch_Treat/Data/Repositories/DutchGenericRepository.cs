@@ -10,11 +10,14 @@ namespace Dutch_Treat.Data.Repositories
         internal readonly ApplicationDbContext _context;
         internal readonly DbSet<T> _dbSet;
 
-        public DutchGenericRepository(ApplicationDbContext db, ILogger<DutchGenericRepository<T>> logger) 
+        public DutchGenericRepository(ApplicationDbContext db, ILogger<DutchGenericRepository<T>> logger)  //Constructor receives dependencies via DI 
         {
             _logger = logger;
-            _context = db;
-            _dbSet = _context.Set<T>();
+
+            //The database context is defined in a class variable,
+            //and the constructor expects the calling object to pass in an instance of the context
+            _context = db; 
+            _dbSet = _context.Set<T>(); //Gets the DbSet for entity type T
         }
         public void Add(T entity)
         {

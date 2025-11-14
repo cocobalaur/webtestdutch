@@ -1,5 +1,7 @@
 ﻿namespace Dutch_Treat.Data.Interfaces
 {
+
+    //this repository class declares a typical set of CRUD methods - Generic Repository Interface
     public interface IDutchRepository<T>
     {
         IEnumerable<T> GetAll();

@@ -2,6 +2,17 @@
 
 namespace Dutch_Treat.Data.Repositories.Helpers
 {
+    /**
+     * RepositoryProvider: Factory for Repositories
+
+        RepositoryProvider holds a cache of created repositories.
+
+        Uses RepositoryFactories to know how to create each repository.
+
+        Ensures single instance per type per UnitOfWork.
+
+        Acts as a bridge between UnitOfWork and actual repositories.
+     */
     public class RepositoryProvider : IRepositoryProvider
     {
         private RepositoryFactories _repositoryFactories;

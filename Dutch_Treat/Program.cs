@@ -15,7 +15,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 //dependency injection (software design pattern where an object or function receives its dependencies from an external source rather than creating them itself.)
 //ApplicationDbContext is your EF Core database context.
 //DI injects ApplicationDbContext whenever a class needs it.
-//so when i create a controller/ any other file i dont need to specify the database cause its already creating it for you through ASP.net 
+//so when i create a controller, i dont need to specify the database cause its already creating it for you through ASP.net 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString)
             .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)); //Improves performance by not tracking entities unless explicitly needed

@@ -3,6 +3,16 @@ using DutchTreat.Data.Entities;
 
 namespace Dutch_Treat.Data.Repositories.Helpers
 {
+    /**
+     * RepositoryFactories: Decides Which Repository to Create
+     * Maps entity types to specific repositories:
+
+       Product → DutchProductRepository
+
+       Order → DutchOrderRepository
+
+       If no specific repository exists, it falls back to GenericRepository.
+     */
     public class RepositoryFactories
     {
         private ILoggerFactory _loggerFactory;

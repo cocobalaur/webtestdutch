@@ -7,6 +7,15 @@ using Microsoft.CodeAnalysis;
 
 namespace Dutch_Treat.Data
 {
+    /**
+     * The unit of work class serves one purpose:
+     * to make sure that when you use multiple repositories, they share a single database context. 
+     * That way, when a unit of work is complete you can call the SaveChanges method on that instance of the context 
+     * and be assured that all related changes will be coordinated.
+     * All that the class needs is a Save method and a property for each repository. 
+     * Each repository property returns a repository instance that has been instantiated using 
+     * the same database context instance as the other repository instances.
+    */
     public class UnitOfWork: IUnitOfWork
     {
         private ApplicationDbContext _context;

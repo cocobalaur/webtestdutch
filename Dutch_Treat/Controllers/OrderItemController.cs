@@ -12,7 +12,7 @@ namespace Dutch_Treat.Controllers
         private readonly IDutchOrderItemRepository _repository;
         private readonly IUnitOfWork _unitOfWork;
         public OrderItemController(ILogger<OrderItemController> logger, IUnitOfWork unitOfWork)
-            : base(logger, unitOfWork.GetRepository<IDutchRepository<OrderItem>>())
+            : base(logger, unitOfWork.GetRepository<IDutchRepository<OrderItem>>()) //dependency injection from repository
         {
             _logger = logger;
             _unitOfWork = unitOfWork;
